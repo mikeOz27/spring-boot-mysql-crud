@@ -92,4 +92,10 @@ public class ProductoModel {
     public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
+
+    @ManyToOne
+    //que no acepte nulo
+    @NotNull
+    @JoinColumn(name = "id_usuario")
+    private UsuarioModel usuario;
 }
