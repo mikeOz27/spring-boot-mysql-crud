@@ -1,6 +1,7 @@
 package com.example.springbootmysql.models;
 
 
+
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 

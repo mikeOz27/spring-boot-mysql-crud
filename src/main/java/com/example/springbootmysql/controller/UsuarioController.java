@@ -29,14 +29,8 @@ public class UsuarioController {
     @PostMapping("/save")
     public ResponseEntity<ApiResponse<UsuarioModel>> saveUsuario(UsuarioModel usuario) {
         try {
-            Object findUsuario = usuarioService.findUsuario(usuario.getId());
-            if (findUsuario != null) {
-                return ResponseEntity
-                        .status(404)
-                        .body(new ApiResponse<>("User already exists", null, 404));
-            }
             usuarioService.saveUsuario(usuario);
-            return ResponseEntity.ok(new ApiResponse<>("No users found", usuario, 200));
+            return ResponseEntity.ok(new ApiResponse<>("User created", usuario, 200));
         } catch (Exception e) {
             System.out.println("Error al guardar el usuario: " + e.getMessage());
             return ResponseEntity

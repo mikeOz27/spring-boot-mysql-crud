@@ -1,12 +1,14 @@
 package com.example.springbootmysql.controller;
 
 import com.example.springbootmysql.models.ProductoModel;
+import com.example.springbootmysql.models.UsuarioModel;
 import com.example.springbootmysql.util.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.springbootmysql.services.ProductoService;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @RestController
@@ -29,9 +31,9 @@ public class ProductoController {
     public ResponseEntity<ApiResponse<ProductoModel>> saveProducto(ProductoModel producto) {
         try {
             productoService.saveProducto(producto);
-            return ResponseEntity.ok(new ApiResponse<>("No products found", producto, 200));
+            return ResponseEntity.ok(new ApiResponse<>("Product created", producto, 200));
         } catch (Exception e) {
-            System.out.println("Error al guardar el producto: " + e.getMessage());
+            System.out.println("Error save product: " + e.getMessage());
             return ResponseEntity
                     .status(404)
                     .body(new ApiResponse<>("Error saving product", null, 404));

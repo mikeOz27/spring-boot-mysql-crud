@@ -3,7 +3,6 @@ package com.example.springbootmysql.models;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -30,7 +29,16 @@ public class ProductoModel {
     private LocalDateTime fechaCreacion = LocalDateTime.now(); // Fecha por defecto
     private LocalDateTime fechaActualizacion = LocalDateTime.now(); // Fecha por defecto
 
-    // Getter and Setter for id
+    @NotNull
+    @Column(name = "id_usuario") // Columna para almacenar el ID del usuario
+    private Long idUsuario;
+
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id", insertable = false, updatable = false)
+    private UsuarioModel usuario;
+
+    // Getter y Setter para id
     public Long getId() {
         return id;
     }
@@ -39,7 +47,7 @@ public class ProductoModel {
         this.id = id;
     }
 
-    // Getter and Setter for nombre
+    // Getter y Setter para nombre
     public String getNombre() {
         return nombre;
     }
@@ -48,7 +56,7 @@ public class ProductoModel {
         this.nombre = nombre;
     }
 
-    // Getter and Setter for descripcion
+    // Getter y Setter para descripcion
     public String getDescripcion() {
         return descripcion;
     }
@@ -57,6 +65,7 @@ public class ProductoModel {
         this.descripcion = descripcion;
     }
 
+    // Getter y Setter para precio
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
@@ -66,7 +75,7 @@ public class ProductoModel {
         return formatter.format(precio);
     }
 
-    // Getter and Setter for stock
+    // Getter y Setter para stock
     public int getStock() {
         return stock;
     }
@@ -75,7 +84,7 @@ public class ProductoModel {
         this.stock = stock;
     }
 
-    // Getter and Setter for fechaCreacion
+    // Getter y Setter para fechaCreacion
     public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
@@ -84,7 +93,7 @@ public class ProductoModel {
         this.fechaCreacion = fechaCreacion;
     }
 
-    // Getter and Setter for fechaActualizacion
+    // Getter y Setter para fechaActualizacion
     public LocalDateTime getFechaActualizacion() {
         return fechaActualizacion;
     }
@@ -93,9 +102,21 @@ public class ProductoModel {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    @ManyToOne
-    //que no acepte nulo
-    @NotNull
-    @JoinColumn(name = "id_usuario")
-    private UsuarioModel usuario;
+    // Getter y Setter para idUsuario
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    // Getter y Setter para usuario
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
 }
